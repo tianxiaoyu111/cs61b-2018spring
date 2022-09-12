@@ -81,8 +81,22 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        // 保证第一个节点不为空
+        if (A == null) {
+            return B;
+        }
+        // 记住第一个节点
+        IntList ptr = A;
+        while (true) {
+            if (A.rest == null) {
+                A.rest = B;
+                break;
+            }
+            // 形参A指针往后拨, 指向下一个节点
+            A = A.rest;
+        }
+        return ptr;
+
     }
 
     /**
@@ -90,8 +104,26 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        // 保证第一个节点不为null
+        if (A == null) {
+            return B;
+        }
+        // 制作第一个节点
+        IntList tempList = new IntList(A.first, null);
+        // 记住第一个节点
+        IntList ptr = tempList;
+        while (true) {
+            if (A.rest == null) {
+                tempList.rest = B;
+                break;
+            }
+            // 制作下一个节点
+            tempList.rest = new IntList(A.rest.first, null);
+            // 两个指针同时往后拨, 指向下一个节点
+            A = A.rest;
+            tempList = tempList.rest;
+        }
+        return ptr;
     }
 
 
