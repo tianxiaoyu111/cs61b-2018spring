@@ -44,13 +44,13 @@
  * <p>
  * 本质上看, 其实就是sentinel一个节点强行当做了两个哨兵来用, 又当头又当尾形成了circle拓扑结构. 可以在想像中将sentinel节点框
  * [prev/item/next]从item的正中间一分为二, 那左边就是尾巴, 右边就是头.
- *
+ * <p>
  * 遗留问题:
  * 1. 递归还是不会写
  * 2. 啥时候private, 尤其是内部类里的成员和方法, 这是怎么算的?
+ *
  * @param <T>
  */
-
 public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
@@ -120,8 +120,8 @@ public class LinkedListDeque<T> {
      */
 
     public T removeLast() {
-        if (size == 1) {
-            sentinel.next = sentinel;
+        if (isEmpty()) {
+            return null;
         }
         Node p = sentinel.prev;
         sentinel.prev = sentinel.prev.prev;
@@ -134,7 +134,7 @@ public class LinkedListDeque<T> {
      * 获取index位置上元素的值
      *
      * @param index 元素位置索引
-     * @return
+     * @return item
      */
     public T get(int index) {
         // 空表时, 即size为0时, 此逻辑运算必定为真. 即任意一个整数要么小于0, 要么大于-1
