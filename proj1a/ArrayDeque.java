@@ -50,8 +50,11 @@ public class ArrayDeque<T> {
             resize(size * RFACTOR);
         }
         items[nextLast] = x;
-        nextLast++;
         size++;
+        nextLast++;
+        if (nextLast == items.length) {
+            nextLast = 0;
+        }
     }
 
     public void addFirst(T x) {
@@ -62,8 +65,11 @@ public class ArrayDeque<T> {
             resize(items.length * RFACTOR);
         }
         items[nextFirst] = x;
-        nextFirst--;
         size++;
+        nextFirst--;
+        if (nextFirst == -1) {
+            nextFirst = items.length - 1;
+        }
     }
 
     public T removeFirst() {
@@ -91,7 +97,7 @@ public class ArrayDeque<T> {
         }
         nextLast--;
         if (nextLast == -1) {
-            nextFirst = items.length - 1;
+            nextLast = items.length - 1;
         }
         size--;
         T temp = items[nextLast];
@@ -163,93 +169,5 @@ public class ArrayDeque<T> {
         }
         // 其他情况:转向,或者未转向且概念索引在front个数之内, 都使用nextFirst定位
         return nextFirst + 1 + index;
-    }
-
-    public static void main(String[] args) {
-        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
-        arrayDeque.addFirst(5);
-        arrayDeque.addFirst(4);
-        arrayDeque.addFirst(3);
-        arrayDeque.addFirst(2);
-        arrayDeque.addFirst(1);
-        arrayDeque.addLast(6);
-        arrayDeque.addLast(7);
-        arrayDeque.addLast(8);
-        System.out.println(arrayDeque.get(5));
-        arrayDeque.printDeque();
-        arrayDeque.addLast(9);
-        arrayDeque.addLast(10);
-        arrayDeque.addFirst(0);
-        arrayDeque.addFirst(-1);
-        arrayDeque.addFirst(-2);
-        arrayDeque.addFirst(-3);
-        arrayDeque.addFirst(-4);
-        arrayDeque.addFirst(-5);
-        arrayDeque.addFirst(-6);
-        arrayDeque.addLast(11);
-        arrayDeque.addLast(12);
-        arrayDeque.addLast(13);
-        System.out.println(arrayDeque.get(0));
-        System.out.println(arrayDeque.get(1));
-        System.out.println(arrayDeque.get(2));
-        System.out.println(arrayDeque.get(3));
-        System.out.println(arrayDeque.get(4));
-        System.out.println(arrayDeque.get(5));
-        System.out.println(arrayDeque.get(6));
-        System.out.println(arrayDeque.get(7));
-        System.out.println(arrayDeque.get(8));
-        System.out.println(arrayDeque.get(9));
-        System.out.println(arrayDeque.get(10));
-        System.out.println(arrayDeque.get(11));
-        System.out.println(arrayDeque.get(12));
-        System.out.println(arrayDeque.get(13));
-        System.out.println(arrayDeque.get(14));
-        System.out.println(arrayDeque.get(15));
-        System.out.println(arrayDeque.get(16));
-        System.out.println(arrayDeque.get(17));
-        System.out.println(arrayDeque.get(18));
-        System.out.println(arrayDeque.get(19));
-        System.out.println(arrayDeque.get(20));
-        arrayDeque.printDeque();
-        arrayDeque.removeFirst();
-        arrayDeque.removeFirst();
-        arrayDeque.removeFirst();
-        System.out.println(arrayDeque.get(0));
-        System.out.println(arrayDeque.get(1));
-        System.out.println(arrayDeque.get(2));
-        System.out.println(arrayDeque.get(3));
-        System.out.println(arrayDeque.get(4));
-        System.out.println(arrayDeque.get(5));
-        System.out.println(arrayDeque.get(6));
-        System.out.println(arrayDeque.get(7));
-        System.out.println(arrayDeque.get(8));
-        System.out.println(arrayDeque.get(9));
-        System.out.println(arrayDeque.get(10));
-        System.out.println(arrayDeque.get(11));
-        System.out.println(arrayDeque.get(12));
-        System.out.println(arrayDeque.get(13));
-        System.out.println(arrayDeque.get(14));
-        System.out.println(arrayDeque.get(15));
-        System.out.println(arrayDeque.get(16));
-        System.out.println(arrayDeque.get(17));
-        System.out.println(arrayDeque.get(18));
-        arrayDeque.printDeque();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.removeFirst();
-//        arrayDeque.addFirst(1);
-//        arrayDeque.removeLast();
-//        arrayDeque.removeLast();
-//        arrayDeque.removeLast();
-//        System.out.println(arrayDeque.removeLast());
-//        System.out.println(arrayDeque.removeLast());
-//        System.out.println(arrayDeque.removeFirst());
     }
 }
