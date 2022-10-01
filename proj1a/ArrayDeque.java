@@ -49,12 +49,14 @@ public class ArrayDeque<T> {
         if (size == items.length) {
             resize(size * RFACTOR);
         }
-        items[nextLast] = x;
-        size++;
-        nextLast++;
+        // 这一句不能放在函数体最后, 即当连续addLast一直到满员时, 不能让nextLast转一圈回到原位
+        // 后面resize和minusOne的所有逻辑, 都默认满员时的指针不发生转向, 依此来计算出的前后段个数才是正确的
         if (nextLast == items.length) {
             nextLast = 0;
         }
+        items[nextLast] = x;
+        size++;
+        nextLast++;
     }
 
     public void addFirst(T x) {
@@ -64,12 +66,12 @@ public class ArrayDeque<T> {
         if (size == items.length) {
             resize(items.length * RFACTOR);
         }
-        items[nextFirst] = x;
-        size++;
-        nextFirst--;
         if (nextFirst == -1) {
             nextFirst = items.length - 1;
         }
+        items[nextFirst] = x;
+        size++;
+        nextFirst--;
     }
 
     public T removeFirst() {
