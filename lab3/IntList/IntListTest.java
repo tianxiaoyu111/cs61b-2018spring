@@ -66,10 +66,11 @@ public class IntListTest {
         assertEquals(IntList.of(1, 2, 3), A);
     }
 
-    /** If you're running this from the command line, you'll need
-      * to add a main method. See ArithmeticTest.java for an
-      * example. */
-
+    /**
+     * If you're running this from the command line, you'll need
+     * to add a main method. See ArithmeticTest.java for an
+     * example.
+     */
 
 
     // txy-lab3 add
@@ -79,7 +80,7 @@ public class IntListTest {
         IntList L = IntList.of(1, 2, 3);
         IntList res = IntList.reverse(L);
         assertEquals(IntList.of(3, 2, 1), res);     // 断言正确返回了一个反转后的list, 这需要IntList实现了equals方法
-        assertNotEquals(L , IntList.of(1, 2, 3));   // 断言L已经被篡改, 同样需要IntList实现了equals方法
+        assertNotEquals(L, IntList.of(1, 2, 3));   // 断言L已经被篡改, 同样需要IntList实现了equals方法
 //        assertTrue(L == res);             // 断言L与res应该是同一指向
         assertEquals(null, IntList.reverse(null));      // 断言当入参为空时, 反转后也为空
     }
